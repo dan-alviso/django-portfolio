@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../../../favicon.ico">
 
-  <title>Album example for Bootstrap</title>
+  <title>Daniel Alviso</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -20,16 +21,16 @@
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Daniel Alviso</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Daniel Alviso</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="#">GitHub</a>
-          <a class="nav-item nav-link" href="#">Resume</a>
-          <a class="nav-item nav-link" href="#">Blog</a>
+          <a class="nav-item nav-link" href="https://github.com/dan-alviso">GitHub</a>
+          <a class="nav-item nav-link" href="https://linkedin.com/in/dan-alviso">LinkedIn</a>
+          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
         </div>
       </div>
     </nav>
@@ -40,12 +41,13 @@
     <section class="jumbotron text-center">
       <div class="container">
         <h1 class="jumbotron-heading">Hi, I'm Dan</h1>
-        <p class="lead text-muted">I'm a San Francisco Bay Area based full stack developer who loves building with the Django framework and React.js
-          library
+        <p class="lead text-muted">I'm a San Francisco Bay Area based full stack developer who builds using back end frameworks in conjunction with
+          JavaScript libraries like React and Redux on the front end.
         </p>
         <p>
           <a href="mailto:developer@dan-alviso.com" class="btn btn-primary my-2">Email Me</a>
         </p>
+        <img src="{% static 'dan.jpg' %}" />
       </div>
     </section>
 
@@ -57,7 +59,9 @@
           {% for job in jobs.all %}
           <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="{{ job.image.url }}" alt="Card image cap">
+              <a href="{{ job.link }}">
+                <img class="card-img-top" src="{{ job.image.url }}" alt="Card image cap">
+              </a>
               <div class="card-body">
                 <p class="card-text">{{ job.summary }}</p>
               </div>
@@ -73,7 +77,9 @@
 
   <footer class="text-muted">
     <div class="container text-center">
-      <p>© Daniel Alviso {% now "Y" %}</p>
+      <hr />
+      <p>Built using Django</p>
+      <p>Copyright © {% now "Y" %} Daniel Alviso. All Rights Reserved.</p>
     </div>
   </footer>
 
